@@ -1,9 +1,7 @@
-import 'package:coffee/models/User.dart';
 import 'package:coffee/models/UserData.dart';
 import 'package:coffee/screens/home/settings_form.dart';
 import 'package:coffee/services/auth_service.dart';
 import 'package:coffee/services/database_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'PreferenceList.dart';
@@ -15,21 +13,21 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  void showSettings(){
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context){
-        return SettingsForm();
-      }
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    void showSettings(){
+      showModalBottomSheet(
+          context: context,
+          builder: (context){
+            return SettingsForm();
+          }
+      );
+    }
+
     return MultiProvider(
       providers: [
-        StreamProvider<List<UserData>>.value(value: DatabaseService().preferences,),
-        StreamProvider<User>.value(value: AuthService().user,),
+        StreamProvider<List<UserData>>.value(value: DatabaseService().preferences),
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -60,7 +58,10 @@ class _HomeState extends State<Home> {
             )
           ],
         ),
-        body: PreferenceList(),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: PreferenceList(),
+        ),
         ),
     );
   }

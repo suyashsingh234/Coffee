@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffee/models/User.dart';
 import 'package:coffee/models/UserData.dart';
 
 class DatabaseService{
@@ -18,19 +17,10 @@ class DatabaseService{
     }
   }
 
-  Future<UserData> getPreferences(String uid) async{
-    return await databaseReference.collection('Preferences').document(uid).get().then((doc){
-      return UserData(
-        username: doc.data['username'],
-        strength: doc.data['strength'],
-        sugar: doc.data['sugar'],
-      );
-    });
-  }
-
   List<UserData> _getUserDataListFromSnapshot(QuerySnapshot snap){
     return snap.documents.map((doc){
       return UserData(
+        uid: doc.documentID,
         username: doc.data['username'],
         strength: doc.data['strength'],
         sugar: doc.data['sugar'],

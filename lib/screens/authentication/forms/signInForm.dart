@@ -44,109 +44,112 @@ class _SignInFormState extends State<SignInForm> {
       ),
 
       body: Container(
-        margin: EdgeInsets.all(10),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
+        color: Colors.brown[100],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
 
-              TextFormField(
-                validator: (val){
-                  if(val.isEmpty){
-                    return 'Please enter email';
-                  }
-                  return null;
-                },
-                onChanged: (val){
-                  setState(() {
-                    _email=val;
-                  });
-                },
-                decoration: InputDecoration(
-                  icon: Icon(Icons.mail, color: Colors.brown[600],),
-                  hintText: 'Email',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.brown[600],
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.brown[600],
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Colors.brown[600],
-                  fontSize: 20,
-                ),
-              ),
-
-              SizedBox(
-                height: 10,
-              ),
-
-              TextFormField(
-                validator: (val){
-                  if(val.length<6){
-                    return 'Enter password of length greater than 6';
-                  }
-                  return null;
-                },
-                onChanged: (val){
-                  setState(() {
-                    _password=val;
-                  });
-                },
-                obscureText: true,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.lock, color: Colors.brown[600],),
-                  hintText: 'Password',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.brown[600],
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.brown[600],
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Colors.brown[600],
-                  fontSize: 20,
-                ),
-              ),
-
-              SizedBox(
-                height: 10,
-              ),
-
-
-              RaisedButton(
-                onPressed: () async{
-                  if(_formKey.currentState.validate()){
+                TextFormField(
+                  validator: (val){
+                    if(val.isEmpty){
+                      return 'Please enter email';
+                    }
+                    return null;
+                  },
+                  onChanged: (val){
                     setState(() {
-                      showLoading=true;
+                      _email=val;
                     });
-                    dynamic result=await AuthService().signInWithEmailAndPassword(_email, _password);
+                  },
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.mail, color: Colors.brown[600],),
+                    hintText: 'Email',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.brown[600],
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.brown[600],
+                      ),
+                    ),
+                  ),
+                  style: TextStyle(
+                    color: Colors.brown[600],
+                    fontSize: 20,
+                  ),
+                ),
+
+                SizedBox(
+                  height: 10,
+                ),
+
+                TextFormField(
+                  validator: (val){
+                    if(val.length<6){
+                      return 'Enter password of length greater than 6';
+                    }
+                    return null;
+                  },
+                  onChanged: (val){
                     setState(() {
-                      showLoading=false;
-                      error=result;
+                      _password=val;
                     });
-                  }
-                },
-                child: Text('Sign In'),
-                textColor: Colors.white,
-                color: Colors.brown[500],
-              ),
+                  },
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.lock, color: Colors.brown[600],),
+                    hintText: 'Password',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.brown[600],
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.brown[600],
+                      ),
+                    ),
+                  ),
+                  style: TextStyle(
+                    color: Colors.brown[600],
+                    fontSize: 20,
+                  ),
+                ),
 
-              Container(
-                child: Text(error,style: TextStyle(fontSize:15, color: Colors.red),),
-              ),
+                SizedBox(
+                  height: 10,
+                ),
 
-            ],
+
+                RaisedButton(
+                  onPressed: () async{
+                    if(_formKey.currentState.validate()){
+                      setState(() {
+                        showLoading=true;
+                      });
+                      dynamic result=await AuthService().signInWithEmailAndPassword(_email, _password);
+                      setState(() {
+                        showLoading=false;
+                        error=result;
+                      });
+                    }
+                  },
+                  child: Text('Sign In'),
+                  textColor: Colors.white,
+                  color: Colors.pinkAccent,
+                ),
+
+                Container(
+                  child: Text(error,style: TextStyle(fontSize:15, color: Colors.red),),
+                ),
+
+              ],
+            ),
           ),
         ),
       ),

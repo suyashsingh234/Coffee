@@ -44,146 +44,149 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
 
       body: Container(
-        margin: EdgeInsets.all(10),
-        child: Form(
-            key: _formKey,
-            child: Column(
-              children: <Widget>[
+        color: Colors.brown[100],
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
 
-                TextFormField(
-                  onChanged: (val){
-                    setState(() {
-                      _username=val;
-                    });
-                  },
-                  validator: (val){
-                    if(val.isEmpty){
-                      return 'Please enter username';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.person, color: Colors.brown[600],),
-                    hintText: 'Username',
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.brown[600],
-                      ),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.brown[600],
-                      ),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: Colors.brown[600],
-                    fontSize: 20,
-                  ),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                TextFormField(
-                  onChanged: (val){
-                    setState(() {
-                      _email=val;
-                    });
-                  },
-                  validator: (val){
-                    if(val.isEmpty){
-                      return 'Please enter email';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.mail, color: Colors.brown[600],),
-                    hintText: 'Email',
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.brown[600],
-                      ),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.brown[600],
-                      ),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: Colors.brown[600],
-                    fontSize: 20,
-                  ),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                TextFormField(
-                  onChanged: (val){
-                    setState(() {
-                      _password=val;
-                    });
-                  },
-                  validator: (val){
-                    if(val.length<6){
-                      return 'Enter password of length greater than 6';
-                    }
-                    return null;
-                  },
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.lock, color: Colors.brown[600],),
-                    hintText: 'Password',
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.brown[600],
-                      ),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.brown[600],
-                      ),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: Colors.brown[600],
-                    fontSize: 20,
-                  ),
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                RaisedButton(
-                  onPressed: () async{
-                    if(_formKey.currentState.validate()){
+                  TextFormField(
+                    onChanged: (val){
                       setState(() {
-                        showLoading=true;
+                        _username=val;
                       });
-                      dynamic result = await AuthService().signUpWithEmailAndPassword(_username,_email,_password);
+                    },
+                    validator: (val){
+                      if(val.isEmpty){
+                        return 'Please enter username';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.person, color: Colors.brown[600],),
+                      hintText: 'Username',
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.brown[600],
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.brown[600],
+                        ),
+                      ),
+                    ),
+                    style: TextStyle(
+                      color: Colors.brown[600],
+                      fontSize: 20,
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  TextFormField(
+                    onChanged: (val){
                       setState(() {
-                        error=result;
-                        showLoading=false;
+                        _email=val;
                       });
-                    }
-                  },
-                  child: Text('Sign Up'),
-                  textColor: Colors.white,
-                  color: Colors.brown[500],
-                ),
+                    },
+                    validator: (val){
+                      if(val.isEmpty){
+                        return 'Please enter email';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.mail, color: Colors.brown[600],),
+                      hintText: 'Email',
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.brown[600],
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.brown[600],
+                        ),
+                      ),
+                    ),
+                    style: TextStyle(
+                      color: Colors.brown[600],
+                      fontSize: 20,
+                    ),
+                  ),
 
-                Container(
-                  child: Text(error,style: TextStyle(fontSize: 15, color: Colors.red),),
-                )
+                  SizedBox(
+                    height: 10,
+                  ),
 
-              ],
+                  TextFormField(
+                    onChanged: (val){
+                      setState(() {
+                        _password=val;
+                      });
+                    },
+                    validator: (val){
+                      if(val.length<6){
+                        return 'Enter password of length greater than 6';
+                      }
+                      return null;
+                    },
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.lock, color: Colors.brown[600],),
+                      hintText: 'Password',
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.brown[600],
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.brown[600],
+                        ),
+                      ),
+                    ),
+                    style: TextStyle(
+                      color: Colors.brown[600],
+                      fontSize: 20,
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  RaisedButton(
+                    onPressed: () async{
+                      if(_formKey.currentState.validate()){
+                        setState(() {
+                          showLoading=true;
+                        });
+                        dynamic result = await AuthService().signUpWithEmailAndPassword(_username,_email,_password);
+                        setState(() {
+                          error=result;
+                          showLoading=false;
+                        });
+                      }
+                    },
+                    child: Text('Sign Up'),
+                    textColor: Colors.white,
+                    color: Colors.pinkAccent,
+                  ),
+
+                  Container(
+                    child: Text(error,style: TextStyle(fontSize: 15, color: Colors.red),),
+                  )
+
+                ],
+              ),
             ),
-          ),
+        ),
       ),
     );
   }

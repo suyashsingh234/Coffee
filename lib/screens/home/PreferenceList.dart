@@ -12,7 +12,12 @@ class PreferenceListTile extends StatelessWidget{
         child: Row(
           children: <Widget>[
             CircleAvatar(
-              backgroundColor: Colors.brown[userdata.strength*100+100],
+              backgroundColor: Colors.brown[900],
+              radius: 30,
+              child: CircleAvatar(
+                backgroundColor: Colors.brown[userdata.strength*100+100],
+                radius: 28,
+              ),
             ),
             SizedBox(
               width: 20,
@@ -20,9 +25,9 @@ class PreferenceListTile extends StatelessWidget{
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(userdata.username, style: TextStyle(fontSize: 25, color: Colors.brown),),
-                Text('strength: '+userdata.strength.toString(), style: TextStyle(fontSize: 25, color: Colors.brown),),
-                Text('sugar: '+userdata.sugar.toString(), style: TextStyle(fontSize: 25, color: Colors.brown),),
+                Text(userdata.username, style: TextStyle(fontSize: 25, color: Colors.black),),
+                Text('strength: '+userdata.strength.toString(), style: TextStyle(fontSize: 25, color: Colors.grey[600]),),
+                Text('sugar: '+userdata.sugar.toString(), style: TextStyle(fontSize: 25, color: Colors.grey[600]),),
               ],
             )
           ],
